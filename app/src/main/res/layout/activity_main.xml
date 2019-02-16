@@ -34,6 +34,29 @@
             android:layout_height="wrap_content"
             android:onClick="onLoyaltyButtonPressed"
             android:text="Add Loyalty" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Credit Cards" />
+
+        <ListView
+            android:id="@+id/cardListView"
+            android:layout_width="match_parent"
+            android:layout_height="259dp" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Loyaty Programs" />
+
+        <ListView
+            android:id="@+id/loyaltyListView"
+            android:layout_width="match_parent"
+            android:layout_height="256dp" />
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

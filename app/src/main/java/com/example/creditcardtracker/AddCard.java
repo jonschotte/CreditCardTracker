@@ -1,5 +1,6 @@
 package com.example.creditcardtracker;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -7,15 +8,14 @@ import android.widget.EditText;
 
 public class AddCard extends AppCompatActivity {
 
-    private EditText fnameET, lnameET, startdateET, minspendET, rewpointsET;
+    private EditText cnameET, startdateET, minspendET, rewpointsET;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_card);
 
-        this.fnameET = (EditText)this.findViewById(R.id.fnameET);
-        this.lnameET = (EditText)this.findViewById(R.id.lnameET);
+        this.cnameET = (EditText)this.findViewById(R.id.cnameET);
         this.startdateET = (EditText)this.findViewById(R.id.startdateET);
         this.minspendET = (EditText)this.findViewById(R.id.minspendET);
         this.rewpointsET = (EditText)this.findViewById(R.id.rewpointsET);
@@ -23,13 +23,18 @@ public class AddCard extends AppCompatActivity {
 
     public void onAddCardButtonPressed(View v)
     {
-        String fname = this.fnameET.getText().toString();
-        String lname = this.lnameET.getText().toString();
+        String cname = this.cnameET.getText().toString();
         String startdate = this.startdateET.getText().toString();
         int minspend = Integer.parseInt(this.minspendET.getText().toString());
         int rewardpoints = Integer.parseInt(this.rewpointsET.getText().toString());
-        Card c = new Card(fname, lname, startdate, minspend, rewardpoints);
-        c.CardDisplay();
+        Card c = new Card(cname, startdate, minspend, rewardpoints);
+        c.display();
+        Core.currCreditCard = c;
+
+
+        Intent i = new Intent(this, MainActivity.class);
+        this.startActivity(i);
+
     }
 
 

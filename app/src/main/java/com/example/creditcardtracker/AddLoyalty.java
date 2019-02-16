@@ -7,7 +7,7 @@ import android.widget.EditText;
 
 public class AddLoyalty extends AppCompatActivity {
 
-    private EditText cnameET, bankaffET, curbalanceET;
+    private EditText cnameET, bankaffET, pointbalanceET;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,15 +16,15 @@ public class AddLoyalty extends AppCompatActivity {
 
         this.cnameET = (EditText)this.findViewById(R.id.cnameET);
         this.bankaffET = (EditText)this.findViewById(R.id.bankaffET);
-        this.curbalanceET = (EditText)this.findViewById(R.id.curbalanceET);
+        this.pointbalanceET = (EditText)this.findViewById(R.id.pointbalanceET);
     }
 
     public void onAddLoyaltyButtonPressed(View v)
     {
         String cname = this.cnameET.getText().toString();
         String bankaff = this.bankaffET.getText().toString();
-        int curbalance = Integer.parseInt(this.curbalanceET.getText().toString());
-        Loyalty c = new Loyalty(cname, bankaff, curbalance);
-        c.LoyaltyDisplay();
+        int pointbalance = Integer.parseInt(this.pointbalanceET.getText().toString());
+        Loyalty c = new Loyalty(cname, bankaff, pointbalance);
+        c.display();
     }
 }

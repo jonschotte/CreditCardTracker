@@ -21,19 +21,11 @@
             android:text="Add Card" />
 
         <EditText
-            android:id="@+id/fnameET"
+            android:id="@+id/cnameET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="First Name"
-            android:inputType="textPersonName" />
-
-        <EditText
-            android:id="@+id/lnameET"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Last Name"
+            android:hint="Credit Card Name"
             android:inputType="textPersonName" />
 
         <EditText
