@@ -26,5 +26,6 @@ public class Card
     public String toString()
     {
         return this.cname + " " + this.startdate + " $" + this.minspend + " " + this.rewardpoints;
+
     }
 }

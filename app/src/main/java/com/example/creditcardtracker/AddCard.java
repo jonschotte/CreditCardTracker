@@ -28,13 +28,9 @@ public class AddCard extends AppCompatActivity {
         int minspend = Integer.parseInt(this.minspendET.getText().toString());
         int rewardpoints = Integer.parseInt(this.rewpointsET.getText().toString());
         Card c = new Card(cname, startdate, minspend, rewardpoints);
-        c.display();
-        Core.currCreditCard = c;
 
-
-        Intent i = new Intent(this, MainActivity.class);
-        this.startActivity(i);
-
+        Core.cardArrayList.add(c.toString());
+        finish();
     }
 
 

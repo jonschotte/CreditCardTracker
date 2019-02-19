@@ -25,4 +25,10 @@ public class Loyalty
         System.out.println("Bank Affiliation: " + this.bankaff);
         System.out.println("Point Balance: " + this.pointbalance);
     }
+
+    public String toString()
+    {
+        return this.cname + " " + this.bankaff + " " + this.pointbalance;
+
+    }
 }
