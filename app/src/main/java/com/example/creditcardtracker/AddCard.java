@@ -27,11 +27,11 @@ public class AddCard extends AppCompatActivity {
         String startdate = this.startdateET.getText().toString();
         int minspend = Integer.parseInt(this.minspendET.getText().toString());
         int rewardpoints = Integer.parseInt(this.rewpointsET.getText().toString());
-        Card c = new Card(cname, startdate, minspend, rewardpoints);
+        Card cc = new Card(cname, startdate, minspend, rewardpoints);
 
-        Core.cardArrayList.add(c.toString());
-        finish();
+        cc.display();
+        Core.addCard(cc);
+        this.finish();
     }
-
 
 }

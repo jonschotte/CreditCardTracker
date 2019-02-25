@@ -2,30 +2,55 @@ package com.example.creditcardtracker;
 
 public class Card
 {
-    private String cname;
-    private String startdate;
-    private int minspend;
-    private int rewardpoints;
+    private String name;
+    private String start_date;
+    private int min_spend;
+    private int point_bonus;
 
-    public Card (String cname, String startdate, int minspend, int rewardpoints)
+    public Card(String name, String start_date, int min_spend, int point_bonus)
     {
-        this.cname = cname;
-        this.startdate = startdate;
-        this.minspend = minspend;
-        this.rewardpoints = rewardpoints;
+        this.name = name;
+        this.start_date = start_date;
+        this.min_spend = min_spend;
+        this.point_bonus = point_bonus;
     }
 
-    public void display()
+    public Card()
     {
-        System.out.println("Name: " + this.cname);
-        System.out.println("Start Date: " + this.startdate);
-        System.out.println("Minimum Spend: " + this.minspend);
-        System.out.println("Reward Points: " + this.rewardpoints);
+        this.name = "Name";
+        this.start_date = "Start Date";
+        this.min_spend = -1;
+        this.point_bonus = -1;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public String getStart_date() {
+        return start_date;
+    }
+
+    public int getMin_spend() {
+        return min_spend;
+    }
+
+    public int getPoint_bonus() {
+        return point_bonus;
     }
 
     public String toString()
     {
-        return this.cname + " " + this.startdate + " $" + this.minspend + " " + this.rewardpoints;
+        return "Name: " + this.name +
+                " (" + this.start_date + ") - Min Spend: "
+                + this.min_spend + " - Bonus: " + this.point_bonus;
+    }
 
+    public void display()
+    {
+        System.out.println("Name: " + this.name +
+                " (" + this.start_date + ") - Min Spend: "
+                + this.min_spend + " - Bonus: " + this.point_bonus);
     }
 }

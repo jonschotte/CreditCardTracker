@@ -13,11 +13,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ListView cardListView;
-    private ListView loyaltyListView;
-    private ArrayAdapter<String> ClistAdapter;
-    private ArrayAdapter<String> LlistAdapter;
-    private ArrayList<String> loyaltyArrayList;
+    private ListView cardListView, loyaltyListView;
 
 
 
@@ -25,53 +21,43 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //test code below here
+
+        LinkedList ll = new LinkedList();
+        for(int i = 0; i < 10; i++)
+        {
+            ll.addEnd(i);
+        }
+
+        for(int i = 0; i < ll.length(); i++)
+        {
+            System.out.println("LL: " + ll.getAtIndex(i));
+        }
+
+        for(int i = 0; i < 1000; i++)
+        {
+            Core.theLoyaltyProgramStrings[i] = "N/A";
+            Core.theCardStrings[i] = "N/A";
+            Core.theCards[i] = new Card();
+        }
+
+
+
+
+
 
         this.cardListView = (ListView)this.findViewById(R.id.cardListView);
         this.loyaltyListView = (ListView)this.findViewById(R.id.loyaltyListView);
-        Core.cardArrayList = new ArrayList<String>();
-        Core.loyaltyArrayList = new ArrayList<String>();
 
-        //three parameters 'the context, id of the layout (it will be where the data is shown), and the array that contains the data
-        this.ClistAdapter = new ArrayAdapter<String>(this, R.layout.card_listview_row, Core.cardArrayList);
-        this.LlistAdapter = new ArrayAdapter<String>(this, R.layout.card_listview_row, Core.loyaltyArrayList);
-        this.cardListView.setAdapter(this.ClistAdapter);
-        this.loyaltyListView.setAdapter(this.LlistAdapter);
+        Core.ccCustomAdapter = new CreditCardArrayAdapterForLinkedLists(this, R.layout.custom_credit_card_row, Core.theCardsLL);
+        Core.lpCustomAdapter = new LoyaltyArrayAdapterForLinkedLists(this, R.layout.custom_loyalty_program_row, Core.theLoyaltyLL);
+        //Core.lpCustomAdapter = new ArrayAdapter(this, R.layout.custom_loyalty_program_row, Core.theCreditCardsLL);
 
-
+        this.cardListView.setAdapter(Core.ccCustomAdapter);
+        this.loyaltyListView.setAdapter(Core.lpCustomAdapter);
+       // this.loyaltyListView.setAdapter(this.lpAdapter);
 
     }
-        //old code below
-        /*this.cardListView = (ListView)this.findViewById(R.id.cardListView);
 
-        for(int i = 0; i < Core.theCardStrings.length; i++)
-        {
-            Core.theCardStrings[i] = "No Card";
-        }
-
-        //Core.currCreditCard.display();
-        for( int i=0; i < 5; i++)
-        {
-            Card c = Core.currCreditCard;
-            Core.theCards[Core.numCards] = c;
-            Core.theCardStrings[Core.numCards] = c.toString();
-            Core.numCards++;
-        }
-
-        //Core.currCardLoyalty.display();
-        for( int i=0; i < 5; i++)
-        {
-            Loyalty c = Core.currCardLoyalty;
-            Core.theLoyalty[Core.numLoyalty] = c;
-            Core.theLoyaltyStrings[Core.numLoyalty] = c.toString();
-            Core.numLoyalty++;
-        }
-
-
-
-        this.listAdapter = new ArrayAdapter<String>(this, R.layout.card_listview_row, Core.theCardStrings);
-        this.cardListView.setAdapter(this.listAdapter);
-        */
 
     public void onCardButtonPressed(View v)
     {
