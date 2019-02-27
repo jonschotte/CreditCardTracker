@@ -11,15 +11,18 @@ public class LoyaltyNode
         this.nextNode = null;
     }
 
-    public void setNextNode(LoyaltyNode nextNode) {
+    public void setNextNode(LoyaltyNode nextNode)
+    {
         this.nextNode = nextNode;
     }
 
-    public Loyalty getPayload() {
+    public Loyalty getPayload()
+    {
         return payload;
     }
 
-    public LoyaltyNode getNextNode() {
+    public LoyaltyNode getNextNode()
+    {
         return nextNode;
     }
 }

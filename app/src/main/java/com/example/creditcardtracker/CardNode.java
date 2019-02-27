@@ -11,15 +11,18 @@ public class CardNode
         this.nextNode = null;
     }
 
-    public void setNextNode(CardNode nextNode) {
+    public void setNextNode(CardNode nextNode)
+    {
         this.nextNode = nextNode;
     }
 
-    public Card getPayload() {
+    public Card getPayload()
+    {
         return payload;
     }
 
-    public CardNode getNextNode() {
+    public CardNode getNextNode()
+    {
         return nextNode;
     }
 }

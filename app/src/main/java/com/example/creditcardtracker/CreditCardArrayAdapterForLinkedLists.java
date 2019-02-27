@@ -18,8 +18,8 @@ public class CreditCardArrayAdapterForLinkedLists extends ArrayAdapter
     public CreditCardArrayAdapterForLinkedLists(Context context, int textViewResourceId,
                                                 LinkedListOfCards list)
     {
-        super(context, textViewResourceId);
-        this.mContext = context;
+        super(context, textViewResourceId); //Super sets the parents context for array adapter
+        this.mContext = context; //can use the super getcontext function to pull from the parent
         this.CardList = list;
         this.textViewResourceId = textViewResourceId;
     }

@@ -46,4 +46,6 @@ public class LinkedListOfLoyalty
         }
         this.count++;
     }
+
+
 }

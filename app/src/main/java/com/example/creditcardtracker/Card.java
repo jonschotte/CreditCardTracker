@@ -15,13 +15,14 @@ public class Card
         this.point_bonus = point_bonus;
     }
 
-    public Card()
+    /*public Card()
     {
         this.name = "Name";
         this.start_date = "Start Date";
         this.min_spend = -1;
         this.point_bonus = -1;
     }
+    */
 
     public String getName()
     {

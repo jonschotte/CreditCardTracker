@@ -9,18 +9,19 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/lpNameTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:layout_width="46dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Card Name" />
 
         <TextView
-            android:id="@+id/lpBankAffTV"
+            android:id="@+id/lpNameTV"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Bank Affiliation" />
+            android:text="Card Name" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -29,11 +30,39 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/lpBalanceTV"
+            android:id="@+id/textView3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Balance" />
+
+        <TextView
+            android:id="@+id/lpBalanceTV"
+            android:layout_width="72dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Balance" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="59dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Bank Affiliation" />
+
+        <TextView
+            android:id="@+id/lpBankAffTV"
+            android:layout_width="74dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Bank Affiliation" />
 
     </LinearLayout>
 </LinearLayout>

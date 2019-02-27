@@ -15,12 +15,13 @@ public class  Loyalty
         this.pointbalance = pointbalance;
     }
 
-    public Loyalty ()
+    /*public Loyalty ()
     {
         this.name = "Name";
         this.bankaff = "Bank Affiliation";
         this.pointbalance = -1;
     }
+    */
 
     public String getName() {return name;}
 
@@ -37,7 +38,8 @@ public class  Loyalty
 
     public String toString()
     {
-        return "Card Name: " + this.name + " - Bank Affiliation: " + this.bankaff + " - Point Balance: " + this.pointbalance;
+        return "Card Name: " + this.name + " - Bank Affiliation: "
+                + this.bankaff + " - Point Balance: " + this.pointbalance;
 
     }
 }

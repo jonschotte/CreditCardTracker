@@ -1,5 +1,5 @@
 package com.example.creditcardtracker;
-
+/*
 public class Node
 {
     //private CreditCard payload
@@ -25,3 +25,4 @@ public class Node
         this.nextNode = nextNode;
     }
 }
+*/

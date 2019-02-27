@@ -1,5 +1,5 @@
 package com.example.creditcardtracker;
-
+/*
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -53,3 +53,4 @@ public class CreditCardArrayAdapter extends ArrayAdapter
         return listItem;
     }
 }
+*/

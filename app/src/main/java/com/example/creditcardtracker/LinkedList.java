@@ -1,5 +1,6 @@
 package com.example.creditcardtracker;
 
+/*
 public class LinkedList
 {
     private Node head; //always points to the front of the list
@@ -62,3 +63,5 @@ public class LinkedList
         }
     }
 }
+
+*/
