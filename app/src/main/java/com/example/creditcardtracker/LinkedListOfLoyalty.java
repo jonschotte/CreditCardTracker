@@ -7,9 +7,15 @@ public class LinkedListOfLoyalty
 
     public LinkedListOfLoyalty()
     {
+        this.init();
+    }
+
+    private void init()
+    {
         this.head = null;
         this.count = 0;
     }
+
 
     public int length()
     {

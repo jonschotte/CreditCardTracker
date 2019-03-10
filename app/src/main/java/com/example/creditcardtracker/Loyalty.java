@@ -5,6 +5,14 @@ public class  Loyalty
     private String name;
     private String bankaff;
     private int pointbalance;
+    private String key;
+
+
+    public void setKey(String key)
+    {
+        this.key = key;
+    }
+
 
 
 

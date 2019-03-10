@@ -1,11 +1,13 @@
 package com.example.creditcardtracker;
 
-public class Card
+import java.io.Serializable;
+
+public class Card implements Serializable
 {
-    private String name;
-    private String start_date;
-    private int min_spend;
-    private int point_bonus;
+    public String name;
+    public String start_date;
+    public int min_spend;
+    public int point_bonus;
 
     public Card(String name, String start_date, int min_spend, int point_bonus)
     {
@@ -15,29 +17,30 @@ public class Card
         this.point_bonus = point_bonus;
     }
 
-    /*public Card()
+    //no argument constructor required for de-serialization
+    public Card()
     {
-        this.name = "Name";
-        this.start_date = "Start Date";
-        this.min_spend = -1;
-        this.point_bonus = -1;
+
     }
-    */
+
 
     public String getName()
     {
         return name;
     }
 
-    public String getStart_date() {
+    public String getStart_date()
+    {
         return start_date;
     }
 
-    public int getMin_spend() {
+    public int getMin_spend()
+    {
         return min_spend;
     }
 
-    public int getPoint_bonus() {
+    public int getPoint_bonus()
+    {
         return point_bonus;
     }
 
