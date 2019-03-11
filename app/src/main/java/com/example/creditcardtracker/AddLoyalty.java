@@ -1,6 +1,5 @@
 package com.example.creditcardtracker;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,7 +26,7 @@ public class  AddLoyalty extends AppCompatActivity {
         int pointbalance = Integer.parseInt(this.pointbalanceET.getText().toString());
         Loyalty lp = new Loyalty(name, bankaff, pointbalance);
         lp.display();
-        Core.addLoyaltyProgram(lp);
+        Core.addLoyaltyProgramLocally(lp);
         finish();
     }
 }

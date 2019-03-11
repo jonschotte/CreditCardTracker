@@ -1,6 +1,5 @@
 package com.example.creditcardtracker;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -30,7 +29,7 @@ public class AddCard extends AppCompatActivity {
         Card cc = new Card(cname, startdate, minspend, rewardpoints);
 
         cc.display();
-        Core.addCard(cc);
+        Core.addCardLocally(cc);
         this.finish();
     }
 

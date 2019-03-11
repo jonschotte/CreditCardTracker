@@ -1,29 +1,42 @@
 package com.example.creditcardtracker;
 
-import android.widget.ArrayAdapter;
 
-import java.util.ArrayList;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FireBaseDatabase;
 
 public class Core
 {
-
 
     public static LinkedListOfCards theCardsLL = new LinkedListOfCards();
     public static LinkedListOfLoyalty theLoyaltyLL = new LinkedListOfLoyalty();
     public static CreditCardArrayAdapterForLinkedLists ccCustomAdapter;
     public static LoyaltyArrayAdapterForLinkedLists lpCustomAdapter;
+    public static FirebaseDatabase database;
+    public static DatabaseReference creditCardRef;
+    public static DatabaseReference loyaltyProgramRef;
+    public static Card currentSelectedCard = null;
 
     //encapsulated
-    public static void addLoyaltyProgram(Loyalty lp)
+    public static void addLoyaltyProgramLocally(Loyalty lp)
     {
         Core.theLoyaltyLL.addEnd(lp);
         Core.lpCustomAdapter.notifyDataSetChanged();
     }
 
-    public static void addCard(Card cc)
+    public static void addLoyaltyProgramToFirebase(Card lp)
+    {
+        Core.loyaltyProgramRef.push().setValue(lp);
+    }
+
+
+    public static void addCardLocally(Card cc)
     {
         Core.theCardsLL.addEnd(cc);
         Core.ccCustomAdapter.notifyDataSetChanged();
     }
 
+    public static void addCardToFirebase(Card cc)
+    {
+        Core.creditCardRef.push().setValue(cc);
+    }
 }
