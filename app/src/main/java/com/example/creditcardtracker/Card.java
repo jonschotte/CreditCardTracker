@@ -1,5 +1,7 @@
 package com.example.creditcardtracker;
 
+import com.google.firebase.database.DatabaseReference;
+
 import java.io.Serializable;
 
 public class Card implements Serializable
@@ -8,6 +10,9 @@ public class Card implements Serializable
     public String start_date;
     public int min_spend;
     public int point_bonus;
+    private String key;
+    private DatabaseReference ref;
+
 
     public Card(String name, String start_date, int min_spend, int point_bonus)
     {
@@ -17,31 +22,25 @@ public class Card implements Serializable
         this.point_bonus = point_bonus;
     }
 
-    //no argument constructor required for de-serialization
-    public Card()
+    public Card ()
     {
 
     }
 
-
-    public String getName()
+    public void setKey(String key)
     {
-        return name;
+        this.key = key;
+        this.ref = Core.creditCardRef.child(this.key);
     }
 
-    public String getStart_date()
+    public void save()
     {
-        return start_date;
+        this.ref.setValue(this);
     }
 
-    public int getMin_spend()
+    public void delete()
     {
-        return min_spend;
-    }
-
-    public int getPoint_bonus()
-    {
-        return point_bonus;
+        this.ref.removeValue();
     }
 
     public String toString()

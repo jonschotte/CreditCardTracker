@@ -1,9 +1,10 @@
 package com.example.creditcardtracker;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -11,52 +12,84 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import static com.example.creditcardtracker.Core.database;
+
+
 public class MainActivity extends AppCompatActivity {
 
     private ListView cardListView, loyaltyListView;
-
+    private MainActivity myContext;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Core.database = FirebaseDatabase.getInstance(); //
-        Core.myRef = Core.database.getReference("Credit Cards");
-        Core.myRef = Core.database.getReference("Loyalty Programs");
+        this.myContext = this;
+
+        Core.database = FirebaseDatabase.getInstance();
+        Core.creditCardRef = database.getReference("creditCards");
+        Core.loyaltyProgramRef = database.getReference("loyaltyPrograms");
 
 
-        // *********Write a message to the database************
-
-        //DatabaseReference myRef2 = database.getReference("products");
-
-        //Card cc = new Card("Chase", "1/1/1111", 1000, 2000);
-        //myRef.push().setValue(cc);
-        //myRef2.setValue("LOL");
-        //myRef.push().setValue("Hello, World!");
-        //myRef2.push().setValue("LOL");
-        //myRef2.child("woot").push().setValue("LOL");
-
-        // *******Read from the database**********
-        //asynchronous call (non-blocking call) - Observer Design Pattern
-        Core.myRef.addValueEventListener(new ValueEventListener()
+        Core.loyaltyProgramRef.addValueEventListener(new ValueEventListener()
         {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
             {
+                System.out.println("****** " + dataSnapshot.toString());
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 //String value = dataSnapshot.getValue(String.class);
+                //System.out.println("********* " + dataSnapshot.toString());
+                Core.theLoyaltyLL.removeAll();
+
                 for(DataSnapshot ds : dataSnapshot.getChildren())
                 {
-                    System.out.println(" ADDING NEW VALUE *******");
+                    //System.out.println("********* " + ds.toString());
+                    //de-serialize the card
+                    System.out.println("*** Adding value");
+                    Loyalty tempLP = ds.getValue(Loyalty.class);
+                    tempLP.setKey(ds.getKey());
+                    Core.addLoyaltyProgramLocally(tempLP);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error)
+            {
+                // Failed to read value
+                System.out.println("***" + error.toString());
+
+            }
+        });
+
+        //asynchronous call (non-blocking call) - Observer Design Pattern
+        Core.creditCardRef.addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
+                System.out.println("****** " + dataSnapshot.toString());
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                //String value = dataSnapshot.getValue(String.class);
+                //System.out.println("********* " + dataSnapshot.toString());
+                Core.theCardsLL.removeAll();
+
+                for(DataSnapshot ds : dataSnapshot.getChildren())
+                {
+                    //System.out.println("********* " + ds.toString());
+                    //de-serialize the card
+                    System.out.println("*** Adding value");
                     Card tempCC = ds.getValue(Card.class);
+                    tempCC.setKey(ds.getKey());
                     Core.addCardLocally(tempCC);
                 }
-                //DataSnapshot theCards = (DataSnapshot)dataSnapshot.getValue();
-                //System.out.println("************"+ dataSnapshot.toString());
-                //System.out.println("************"+ theCards.toString());
+
+
 
             }
 
@@ -64,13 +97,15 @@ public class MainActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError error)
             {
                 // Failed to read value
+                System.out.println("***" + error.toString());
+
             }
-        }
-        );
+        });
 
 
 
-        //
+
+
         this.cardListView = (ListView)this.findViewById(R.id.cardListView);
         this.loyaltyListView = (ListView)this.findViewById(R.id.loyaltyListView);
 
@@ -79,6 +114,33 @@ public class MainActivity extends AppCompatActivity {
 
         this.cardListView.setAdapter(Core.ccCustomAdapter);
         this.loyaltyListView.setAdapter(Core.lpCustomAdapter);
+
+        this.cardListView.setClickable(true);
+        this.cardListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long row_id)
+            {
+                Card selectedCard = Core.theCardsLL.getAtIndex(position);
+                Intent i = new Intent(myContext, EditCardActivity.class);
+                Core.currentSelectedCard = selectedCard;
+                myContext.startActivity(i);
+            }
+        });
+
+        this.loyaltyListView.setClickable(true);
+        this.loyaltyListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long row_id)
+            {
+                Loyalty selectedLoyalty = Core.theLoyaltyLL.getAtIndex(position);
+                Intent i = new Intent(myContext, EditLoyaltyActivity.class);
+                Core.currentSelectedLoyalty = selectedLoyalty;
+                myContext.startActivity(i);
+            }
+        });
+
 
     }
 

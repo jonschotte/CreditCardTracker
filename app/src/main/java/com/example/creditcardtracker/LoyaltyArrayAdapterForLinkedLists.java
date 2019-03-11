@@ -46,9 +46,9 @@ public class LoyaltyArrayAdapterForLinkedLists extends ArrayAdapter
         TextView lpBalance = (TextView)listItem.findViewById(R.id.lpBalanceTV);
         Loyalty lp = this.LoyaltyList.getAtIndex(position);
 
-        lpName.setText(lp.getName());
-        lpBankName.setText(lp.getBankaff());
-        lpBalance.setText("" + lp.getBalance());
+        lpName.setText(lp.name);
+        lpBankName.setText(lp.bankaff);
+        lpBalance.setText("" + lp.pointbalance);
 
         //return the View after we have set all of the values
         return listItem;

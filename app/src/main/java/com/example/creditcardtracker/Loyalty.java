@@ -1,19 +1,16 @@
 package com.example.creditcardtracker;
 
-public class  Loyalty
+import com.google.firebase.database.DatabaseReference;
+
+import java.io.Serializable;
+
+public class  Loyalty implements Serializable
 {
-    private String name;
-    private String bankaff;
-    private int pointbalance;
+    public String name;
+    public String bankaff;
+    public int pointbalance;
     private String key;
-
-
-    public void setKey(String key)
-    {
-        this.key = key;
-    }
-
-
+    private DatabaseReference ref;
 
 
     public Loyalty (String name, String bankaff, int pointbalance)
@@ -23,19 +20,27 @@ public class  Loyalty
         this.pointbalance = pointbalance;
     }
 
-    /*public Loyalty ()
+    public Loyalty ()
     {
-        this.name = "Name";
-        this.bankaff = "Bank Affiliation";
-        this.pointbalance = -1;
+
     }
-    */
 
-    public String getName() {return name;}
+    public void setKey(String key)
+    {
+        this.key = key;
+        this.ref = Core.loyaltyProgramRef.child(this.key);
+    }
 
-    public String getBankaff() {return bankaff;}
+    public void save()
+    {
+        this.ref.setValue(this);
+    }
 
-    public int getBalance() {return pointbalance;}
+    public void delete()
+    {
+        this.ref.removeValue();
+    }
+
 
     public void display()
     {
