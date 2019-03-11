@@ -2,7 +2,7 @@ package com.example.creditcardtracker;
 
 
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FireBaseDatabase;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Core
 {

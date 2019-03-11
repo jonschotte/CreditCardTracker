@@ -7,8 +7,18 @@ public class LinkedListOfCards
 
     public LinkedListOfCards()
     {
+        this.init();
+    }
+
+    private void init()
+    {
         this.head = null;
         this.count = 0;
+    }
+
+    public void removeAll()
+    {
+        this.init();
     }
 
     public int length()

@@ -12,8 +12,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-
-
+import static com.example.creditcardtracker.Core.database;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -30,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
         this.myContext = this;
 
-        Core.database = FirebaseDatabase.getIntstance();
-        Core.creditCardRef = datebase.getReference("creditCards");
+        Core.database = FirebaseDatabase.getInstance();
+        Core.creditCardRef = database.getReference("creditCards");
         Core.loyaltyProgramRef = database.getReference("loyaltyPrograms");
 
 
@@ -52,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                     //System.out.println("********* " + ds.toString());
                     //de-serialize the card
                     System.out.println("*** Adding value");
-                    Loyalty tempLP = ds.getValue(LoyaltyProgram.class);
+                    Loyalty tempLP = ds.getValue(Loyalty.class);
                     tempLP.setKey(ds.getKey());
                     Core.addLoyaltyProgramLocally(tempLP);
                 }
@@ -128,6 +127,20 @@ public class MainActivity extends AppCompatActivity {
                 myContext.startActivity(i);
             }
         });
+
+        this.loyaltyListView.setClickable(true);
+        this.loyaltyListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long row_id)
+            {
+                Loyalty selectedLoyalty = Core.theLoyaltyLL.getAtIndex(position);
+                Intent i = new Intent(myContext, EditLoyaltyActivity.class);
+                Core.currentSelectedLoyalty = selectedLoyalty;
+                myContext.startActivity(i);
+            }
+        });
+
 
     }
 
