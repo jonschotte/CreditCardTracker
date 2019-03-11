@@ -85,9 +85,9 @@ public class MainActivity extends AppCompatActivity {
                     //System.out.println("********* " + ds.toString());
                     //de-serialize the card
                     System.out.println("*** Adding value");
-                    Card tempCC = ds.getValue(CreditCard.class);
+                    Card tempCC = ds.getValue(Card.class);
                     tempCC.setKey(ds.getKey());
-                    Core.addCreditCardLocally(tempCC);
+                    Core.addCardLocally(tempCC);
                 }
 
 

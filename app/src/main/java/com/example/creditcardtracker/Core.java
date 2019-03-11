@@ -15,6 +15,7 @@ public class Core
     public static DatabaseReference creditCardRef;
     public static DatabaseReference loyaltyProgramRef;
     public static Card currentSelectedCard = null;
+    public static Loyalty currentSelectedLoyalty = null;
 
     //encapsulated
     public static void addLoyaltyProgramLocally(Loyalty lp)
@@ -23,7 +24,7 @@ public class Core
         Core.lpCustomAdapter.notifyDataSetChanged();
     }
 
-    public static void addLoyaltyProgramToFirebase(Card lp)
+    public static void addLoyaltyProgramToFirebase(Loyalty lp)
     {
         Core.loyaltyProgramRef.push().setValue(lp);
     }
