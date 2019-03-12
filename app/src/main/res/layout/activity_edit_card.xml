@@ -35,7 +35,7 @@
         </LinearLayout>
 
         <EditText
-            android:id="@+id/creditCardNameET"
+            android:id="@+id/cnameET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -43,7 +43,7 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/creditCardStartDate"
+            android:id="@+id/startdateET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -51,7 +51,7 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/creditCardMinSpendET"
+            android:id="@+id/minspendET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -59,7 +59,7 @@
             android:inputType="number" />
 
         <EditText
-            android:id="@+id/creditCardBonusPointsET"
+            android:id="@+id/rewpointsET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"

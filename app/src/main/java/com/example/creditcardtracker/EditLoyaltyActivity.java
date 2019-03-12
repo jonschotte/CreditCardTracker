@@ -11,7 +11,8 @@ public class EditLoyaltyActivity extends AppCompatActivity
     private EditText nameET, bankaffET, pointbalanceET;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_loyalty);
 
@@ -35,6 +36,10 @@ public class EditLoyaltyActivity extends AppCompatActivity
         String name = this.nameET.getText().toString();
         String bankaff = this.bankaffET.getText().toString();
         int pointbalance = Integer.parseInt(this.pointbalanceET.getText().toString());
+        //Loyalty lp = new Loyalty(name, bankaff, pointbalance);
+        Core.currentSelectedLoyalty.name = name;
+        Core.currentSelectedLoyalty.bankaff = bankaff;
+        Core.currentSelectedLoyalty.pointbalance = pointbalance;
         Core.currentSelectedLoyalty.save();
         this.finish();
     }

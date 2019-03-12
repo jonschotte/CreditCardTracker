@@ -41,6 +41,10 @@ public class EditCardActivity extends AppCompatActivity
         String startdate = this.startdateET.getText().toString();
         int minspend = Integer.parseInt(this.minspendET.getText().toString());
         int rewardpoints = Integer.parseInt(this.rewpointsET.getText().toString());
+        Core.currentSelectedCard.name = cname;
+        Core.currentSelectedCard.start_date = startdate;
+        Core.currentSelectedCard.min_spend = minspend;
+        Core.currentSelectedCard.point_bonus = rewardpoints;
         Core.currentSelectedCard.save();
         this.finish();
     }

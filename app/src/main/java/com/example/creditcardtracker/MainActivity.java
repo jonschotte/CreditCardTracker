@@ -9,6 +9,7 @@ import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
@@ -27,84 +28,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //USE TO CLEAR DATABASE
+        //DatabaseReference root = FirebaseDatabase.getInstance().getReference();
+        //root.setValue(null);
+
         this.myContext = this;
-
-        Core.database = FirebaseDatabase.getInstance();
-        Core.creditCardRef = database.getReference("creditCards");
-        Core.loyaltyProgramRef = database.getReference("loyaltyPrograms");
-
-
-        Core.loyaltyProgramRef.addValueEventListener(new ValueEventListener()
-        {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot)
-            {
-                System.out.println("****** " + dataSnapshot.toString());
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                //String value = dataSnapshot.getValue(String.class);
-                //System.out.println("********* " + dataSnapshot.toString());
-                Core.theLoyaltyLL.removeAll();
-
-                for(DataSnapshot ds : dataSnapshot.getChildren())
-                {
-                    //System.out.println("********* " + ds.toString());
-                    //de-serialize the card
-                    System.out.println("*** Adding value");
-                    Loyalty tempLP = ds.getValue(Loyalty.class);
-                    tempLP.setKey(ds.getKey());
-                    Core.addLoyaltyProgramLocally(tempLP);
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error)
-            {
-                // Failed to read value
-                System.out.println("***" + error.toString());
-
-            }
-        });
-
-        //asynchronous call (non-blocking call) - Observer Design Pattern
-        Core.creditCardRef.addValueEventListener(new ValueEventListener()
-        {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot)
-            {
-                System.out.println("****** " + dataSnapshot.toString());
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                //String value = dataSnapshot.getValue(String.class);
-                //System.out.println("********* " + dataSnapshot.toString());
-                Core.theCardsLL.removeAll();
-
-                for(DataSnapshot ds : dataSnapshot.getChildren())
-                {
-                    //System.out.println("********* " + ds.toString());
-                    //de-serialize the card
-                    System.out.println("*** Adding value");
-                    Card tempCC = ds.getValue(Card.class);
-                    tempCC.setKey(ds.getKey());
-                    Core.addCardLocally(tempCC);
-                }
-
-
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error)
-            {
-                // Failed to read value
-                System.out.println("***" + error.toString());
-
-            }
-        });
-
-
-
-
 
         this.cardListView = (ListView)this.findViewById(R.id.cardListView);
         this.loyaltyListView = (ListView)this.findViewById(R.id.loyaltyListView);
@@ -140,6 +68,84 @@ public class MainActivity extends AppCompatActivity {
                 myContext.startActivity(i);
             }
         });
+
+        Core.database = FirebaseDatabase.getInstance();
+        Core.creditCardRef = database.getReference("creditCards");
+        Core.loyaltyProgramRef = database.getReference("loyaltyPrograms");
+
+
+        Core.loyaltyProgramRef.addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
+                System.out.println("****** " + dataSnapshot.toString());
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                //String value = dataSnapshot.getValue(String.class);
+                //System.out.println("********* " + dataSnapshot.toString());
+                Core.theLoyaltyLL.removeAll();
+
+                for(DataSnapshot ds : dataSnapshot.getChildren())
+                {
+                    //System.out.println("********* " + ds.toString());
+                    //de-serialize the card
+                    System.out.println("*** Adding value");
+                    Loyalty tempLP = ds.getValue(Loyalty.class);
+                    tempLP.setKey(ds.getKey());
+                    Core.addLoyaltyProgramLocally(tempLP);
+                }
+                Core.lpCustomAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error)
+            {
+                // Failed to read value
+                System.out.println("***" + error.toString());
+
+            }
+        });
+
+        //asynchronous call (non-blocking call) - Observer Design Pattern
+        Core.creditCardRef.addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
+                System.out.println("****** " + dataSnapshot.toString());
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                //String value = dataSnapshot.getValue(String.class);
+                //System.out.println("********* " + dataSnapshot.toString());
+                Core.theCardsLL.removeAll();
+
+                for(DataSnapshot ds : dataSnapshot.getChildren())
+                {
+                    //System.out.println("********* " + ds.toString());
+                    //de-serialize the card
+                    System.out.println("*** Adding value");
+                    Card tempCC = ds.getValue(Card.class);
+                    tempCC.setKey(ds.getKey());
+                    Core.addCardLocally(tempCC);
+                }
+                Core.ccCustomAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error)
+            {
+                // Failed to read value
+                System.out.println("***" + error.toString());
+
+            }
+        });
+
+
+
+
+
+
 
 
     }

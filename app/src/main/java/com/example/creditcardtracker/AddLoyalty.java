@@ -26,7 +26,8 @@ public class  AddLoyalty extends AppCompatActivity {
         int pointbalance = Integer.parseInt(this.pointbalanceET.getText().toString());
         Loyalty lp = new Loyalty(name, bankaff, pointbalance);
         lp.display();
-        Core.addLoyaltyProgramLocally(lp);
+        //Core.addLoyaltyProgramLocally(lp);
+        Core.addLoyaltyProgramToFirebase(lp);
         finish();
     }
 }
