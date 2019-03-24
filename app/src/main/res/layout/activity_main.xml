@@ -35,6 +35,13 @@
             android:onClick="onLoyaltyButtonPressed"
             android:text="Add Loyalty" />
 
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onAirportlistButtonPressed"
+            android:text="Airport List" />
+
         <TextView
             android:id="@+id/textView5"
             android:layout_width="match_parent"

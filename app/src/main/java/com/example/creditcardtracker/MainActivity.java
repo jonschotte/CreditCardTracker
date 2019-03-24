@@ -13,6 +13,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
 import static com.example.creditcardtracker.Core.database;
 
 
@@ -27,6 +28,15 @@ public class MainActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        NetworkThread nt = new NetworkThread();
+        nt.start();
+
+
+
+
+
+
 
         //USE TO CLEAR DATABASE
         //DatabaseReference root = FirebaseDatabase.getInstance().getReference();
@@ -143,11 +153,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
     }
 
 
@@ -162,6 +167,13 @@ public class MainActivity extends AppCompatActivity {
     {
         //intent used to go to other page
         Intent i = new Intent(this, AddLoyalty.class);
+        this.startActivity(i);
+    }
+
+    public void onAirportlistButtonPressed(View v)
+    {
+        //intent used to go to other page
+        Intent i = new Intent(this, Airport.class);
         this.startActivity(i);
     }
 }
