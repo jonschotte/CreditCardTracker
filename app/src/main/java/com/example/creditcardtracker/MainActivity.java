@@ -29,12 +29,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        NetworkThread nt = new NetworkThread();
+        NetworkThread nt = new NetworkThread("MKE");
         nt.start();
-
-
-
-
 
 
 
@@ -173,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
     public void onAirportlistButtonPressed(View v)
     {
         //intent used to go to other page
-        Intent i = new Intent(this, Airport.class);
+        Intent i = new Intent(this, AirportListActivity.class);
         this.startActivity(i);
     }
 }

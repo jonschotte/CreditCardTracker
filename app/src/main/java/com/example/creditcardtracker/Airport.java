@@ -1,6 +1,7 @@
 package com.example.creditcardtracker;
 
-import com.google.android.gms.common.api.internal.StatusExceptionMapper;
+
+import com.google.firebase.database.DatabaseReference;
 
 import java.io.Serializable;
 
@@ -11,6 +12,8 @@ public class Airport implements Serializable
     public String region;
     public String city;
     public String airportCode;
+    private String key;
+    private DatabaseReference ref;
 
     public Airport (String name, String country, String region, String city, String airportCode)
     {
@@ -26,15 +29,30 @@ public class Airport implements Serializable
 
     }
 
-    //public String toString()
-    {
 
+
+    public boolean filterApplies(String filterString)
+    {
+        filterString = filterString.toLowerCase();
+
+        return this.name.toLowerCase().contains(filterString) ||
+                this.city.toLowerCase().contains(filterString) ||
+                this.region.toLowerCase().contains(filterString) ||
+                this.airportCode.toLowerCase().contains(filterString) ||
+                this.country.toLowerCase().contains(filterString);
+    }
+
+
+
+    public String toString()
+    {
+        return this.city + " | " + this.region + " | " +  this.country + "(" + this.airportCode + ")";
     }
 
 
 
     public void display()
     {
-        System.out.println("***" + this.name + this.country + this.region + this.city + this.airportCode);
+        System.out.println("*** " + this.name + "\t" + this.country + "\t" + this.region + "\t" + this.city + "\t" + this.airportCode);
     }
 }

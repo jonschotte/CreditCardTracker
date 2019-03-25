@@ -4,6 +4,8 @@ package com.example.creditcardtracker;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.sql.Struct;
+
 public class Core
 {
 
@@ -16,6 +18,8 @@ public class Core
     public static DatabaseReference loyaltyProgramRef;
     public static Card currentSelectedCard = null;
     public static Loyalty currentSelectedLoyalty = null;
+    public static String currentSelectedAirport = null;
+    public static String currentSelectedAirportCode = "MKE";
 
     //encapsulated
     public static void addLoyaltyProgramLocally(Loyalty lp)

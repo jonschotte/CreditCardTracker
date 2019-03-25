@@ -29,7 +29,6 @@ public class AddCard extends AppCompatActivity {
         Card cc = new Card(cname, startdate, minspend, rewardpoints);
 
         cc.display();
-        //Core.addCardLocally(cc);
         Core.addCardToFirebase(cc);
         this.finish();
     }
