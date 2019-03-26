@@ -45,9 +45,10 @@ public class AirportListActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long row_id)
             {
                 String selectedAirport = (String) airportLV.getItemAtPosition(position);
-                //String selectedAirport = (String)airportLV.getItemAtPosition(position);
+                //String selectedAirportCode = (String) airportLV.getItemAtPosition(position);
                 Intent i = new Intent(myContext, AirportFlights.class);
                 Core.currentSelectedAirport = selectedAirport;
+                //Core.currentSelectedAirportCode = Airport.airportCode;
                 myContext.startActivity(i);
             }
         });
@@ -69,6 +70,7 @@ public class AirportListActivity extends AppCompatActivity
                     temp = ds.getValue(Airport.class);
                     theAirports.add(temp);
                     theAirportStrings.add(temp.toString());
+
                 }
                 aa.notifyDataSetChanged();
             }

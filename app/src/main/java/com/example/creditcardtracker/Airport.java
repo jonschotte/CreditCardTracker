@@ -49,6 +49,13 @@ public class Airport implements Serializable
         return this.city + " | " + this.region + " | " +  this.country + "(" + this.airportCode + ")";
     }
 
+    public String getAirportCode()
+    {
+        //Core.currentSelectedAirportCode = this.airportCode;
+        return this.airportCode;
+
+
+    }
 
 
     public void display()

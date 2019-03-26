@@ -14,7 +14,6 @@ import java.util.LinkedList;
 
 public class AirportFlights extends AppCompatActivity {
 
-
     private ListView nonstopLV;
     private LinkedList<String> theNonstopStrings = new LinkedList<String>();
     private LinkedList<Airport> theNonstop = new LinkedList<Airport>();
@@ -27,10 +26,13 @@ public class AirportFlights extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_airport_flights);
 
-        String theAirport = ("Nonstop flights from" + Core.currentSelectedAirport.airportCode);
+        String theAirport = ("Nonstop flights from" + Core.currentSelectedAirport);
         TextView airport = (TextView)this.findViewById(R.id.SelectedAirportTV);
         airport.setText(theAirport);
+        System.out.println("*******Code" +  Core.currentSelectedAirportCode);
 
+        NetworkThread nt = new NetworkThread("MKE");
+        nt.start();
 
 
         this.nonstopLV = this.findViewById(R.id.nonstopLV);
