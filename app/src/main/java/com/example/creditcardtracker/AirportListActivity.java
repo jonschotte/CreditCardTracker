@@ -21,6 +21,7 @@ public class AirportListActivity extends AppCompatActivity
 {
     private ListView airportLV;
     private LinkedList<String> theAirportStrings = new LinkedList<String>();
+    private LinkedList<Airport> theFilteredAirports = new LinkedList<Airport>();
     private LinkedList<Airport> theAirports = new LinkedList<Airport>();
     private ArrayAdapter<String> aa;
     private EditText filterET;
@@ -31,24 +32,23 @@ public class AirportListActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_airport_list);
+        this.myContext = this;
         this.filterET = this.findViewById(R.id.filterET);
         this.airportLV = this.findViewById(R.id.airportLV);
         aa = new ArrayAdapter<String>(this, R.layout.another_row, this.theAirportStrings);
         this.airportLV.setAdapter(aa);
-        this.myContext = this;
+
 
         //Used to make the list view clickable
-        this.airportLV.setClickable(true);
+        //this.airportLV.setClickable(true);
         this.airportLV.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long row_id)
             {
-                String selectedAirport = (String) airportLV.getItemAtPosition(position);
-                //String selectedAirportCode = (String) airportLV.getItemAtPosition(position);
                 Intent i = new Intent(myContext, AirportFlights.class);
-                Core.currentSelectedAirport = selectedAirport;
-                //Core.currentSelectedAirportCode = Airport.airportCode;
+                Airport selectedAirport = myContext.theFilteredAirports.get(position);
+                i.putExtra("airportCode", selectedAirport.airportCode);
                 myContext.startActivity(i);
             }
         });
@@ -87,23 +87,17 @@ public class AirportListActivity extends AppCompatActivity
     {
         String filterString = this.filterET.getText().toString();
         this.theAirportStrings.clear();
+        this.theFilteredAirports.clear();
         for(Airport a : this.theAirports)
         {
             if(a.filterApplies(filterString))
             {
                 this.theAirportStrings.add(a.toString());
+                this.theFilteredAirports.add(a);
             }
         }
         this.aa.notifyDataSetChanged();
     }
-
-
-
-
-
-
-
-
 
 
 }

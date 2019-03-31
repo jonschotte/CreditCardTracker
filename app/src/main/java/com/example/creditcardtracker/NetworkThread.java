@@ -1,64 +1,38 @@
 package com.example.creditcardtracker;
 
+import android.os.Handler;
+import android.os.Looper;
+import android.widget.ArrayAdapter;
+
 import com.google.firebase.database.DatabaseReference;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class NetworkThread extends Thread
 {
     private String airportCode;
+    private ArrayAdapter<String> theArrayAdapter;
+    private LinkedList<String> theNonstopStrings;
+    private NetworkThread myContext;
 
-    public NetworkThread(String airportCode)
+    public NetworkThread(String airportCode, ArrayAdapter<String> theArrayAdapter, LinkedList<String> theNonstopStrings)
     {
         this.airportCode = airportCode;
+        this.theArrayAdapter = theArrayAdapter;
+        this.theNonstopStrings = theNonstopStrings;
+        this.myContext = this;
     }
 
 
 
     public void run()
     {
-         /*
         try
         {
-
-
-
-            //URL airportURL = new URL("http://ourairports.com/data/airports.csv");
-            HttpURLConnection conn = (HttpURLConnection)airportURL.openConnection();
-            Scanner input = new Scanner(conn.getInputStream());
-            String data = "";
-
-
-            java.util.LinkedList<Airport> ll = new java.util.LinkedList<Airport>();
-            DatabaseReference ref = Core.database.getReference("airports");
-            Airport temp;
-
-            while(input.hasNextLine())
-            {
-                String[] parts = input.nextLine().split(",");
-                if (parts.length >= 14)
-                {
-                    temp = new Airport(parts[3], parts[8], parts[9], parts[10], parts[13]);
-                    if(temp.airportCode.length()>0)
-                    {
-                        ll.add(temp);
-                    }
-                }
-
-
-            }
-            System.out.println("********" + ll.size());
-            ref.setValue(ll);
-
-            System.out.println("****** DONE");
-        }
-        */
-
-        try
-        {
-            URL airportURL = new URL("https://www.flightsfrom.com/" + Core.currentSelectedAirportCode + "/destinations");
+            URL airportURL = new URL("https://www.flightsfrom.com/" + this.airportCode + "/destinations");
 
             HttpURLConnection conn = (HttpURLConnection)airportURL.openConnection();
             Scanner input = new Scanner(conn.getInputStream());
@@ -68,7 +42,10 @@ public class NetworkThread extends Thread
             {
                 data = data + input.nextLine();
             }
-            System.out.println("***" + data);
+            input.close();
+
+            System.out.println("*** HAVE DATA!!!!!");
+            //System.out.println("***" + data);
             String[] parts = data.split("airport-content-destination-list-name");
             String beforeVal = "destination-search-item\">";
             String afterVal = "</span>";
@@ -82,9 +59,19 @@ public class NetworkThread extends Thread
                     beforeIndex += beforeVal.length();
                     afterIndex = part.indexOf(afterVal, beforeIndex);
                     //System.out.println("***" + part.substring(beforeIndex, afterIndex));
+                    this.theNonstopStrings.add(part.substring(beforeIndex, afterIndex));
                 }
             }
             System.out.println("***** Done");
+
+            new Handler(Looper.getMainLooper()).post(new Runnable () {
+                @Override
+                public void run () {
+                    myContext.theArrayAdapter.notifyDataSetChanged();
+                }
+            });
+
+            //myContext.theArrayAdapter.notifyDataSetChanged();
 
         }
         catch(Exception e)
