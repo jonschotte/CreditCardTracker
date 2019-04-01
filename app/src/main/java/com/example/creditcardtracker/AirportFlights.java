@@ -29,6 +29,8 @@ public class AirportFlights extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_airport_flights);
+
+
         TextView airportTV = (TextView)this.findViewById(R.id.SelectedAirportTV);
         this.nonstopLV = this.findViewById(R.id.nonstopLV);
         this.myContext = this;
@@ -38,11 +40,12 @@ public class AirportFlights extends AppCompatActivity {
         this.nonstopLV.setAdapter(aa);
 
         String airportCode = this.getIntent().getStringExtra("airportCode");
-
+        System.out.println("this is it" + airportCode);
         //strip the " from both ends of the airport code
         airportCode = airportCode.replaceAll("\"","");
 
         airportTV.setText(airportCode);
+
 
 
         NetworkThread nt = new NetworkThread(airportCode, aa, ll);
@@ -54,14 +57,21 @@ public class AirportFlights extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long row_id)
             {
+
                 Intent i = new Intent(myContext, AirportFlights.class);
                 //Airport selectedAirport = myContext.theNonstop.get(position);
-                String selectedAirport = (String)myContext.nonstopLV.getItemAtPosition(position);
-                System.out.println("*********" + selectedAirport);
+                //String selectedAirport = (String)myContext.nonstopLV.getItemAtPosition(position);
                 //need to set airportCode to last 3 char of string
+                String CityandAirportCodeString = (String)myContext.nonstopLV.getItemAtPosition(position);
+                Core.airportCode = CityandAirportCodeString.substring(CityandAirportCodeString.length() - 3);
+
+                //Airport selectedAirport = new Airport();
+                //selectedAirport.airportCode = AirportCodeString;
+                //System.out.println("*********" + selectedAirport.airportCode);
 
                 //i.putExtra("airportCode", selectedAirport.airportCode);
-                myContext.startActivity(i);
+                finish();
+                startActivity(getIntent());
             }
         });
 

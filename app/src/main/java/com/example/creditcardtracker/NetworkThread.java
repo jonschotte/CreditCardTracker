@@ -73,6 +73,11 @@ public class NetworkThread extends Thread
 
             //myContext.theArrayAdapter.notifyDataSetChanged();
 
+
+
+
+
+
         }
         catch(Exception e)
         {
