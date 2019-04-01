@@ -1,49 +1,43 @@
 package com.example.creditcardtracker;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.google.firebase.database.DataSnapshot;
-
 import java.util.LinkedList;
 
-public class AirportFlights extends AppCompatActivity {
+public class AirportFlightsOther extends AppCompatActivity {
 
-    private ListView nonstopLV;
-    private LinkedList<String> theNonstopStrings = new LinkedList<String>();
-    private LinkedList<Airport> theNonstop = new LinkedList<Airport>();
+    private ListView nonstopOtherLV;
+    //private LinkedList<String> theNonstopStrings = new LinkedList<String>();
+    //private LinkedList<Airport> theNonstop = new LinkedList<Airport>();
     private ArrayAdapter<String> aa;
-    private AirportFlights myContext;
-
-
+    private AirportFlightsOther myContext;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_airport_flights);
-
+        setContentView(R.layout.activity_airport_flights_other);
 
         TextView airportTV = (TextView)this.findViewById(R.id.SelectedAirportTV);
-        this.nonstopLV = this.findViewById(R.id.nonstopLV);
+        this.nonstopOtherLV = this.findViewById(R.id.nonstopOtherLV);
         this.myContext = this;
 
         LinkedList<String> ll = new LinkedList<String>();
         ArrayAdapter<String> aa = new ArrayAdapter<String>(this, R.layout.another_row, ll);
-        this.nonstopLV.setAdapter(aa);
+        this.nonstopOtherLV.setAdapter(aa);
 
-        Core.airportCode = this.getIntent().getStringExtra("airportCode");
         String airportCode = Core.airportCode;
         System.out.println("this is it" + airportCode);
         //strip the " from both ends of the airport code
-        airportCode = airportCode.replaceAll("\"","");
+        //airportCode = airportCode.replaceAll("\"","");
+
         airportTV.setText(airportCode);
 
 
@@ -52,28 +46,27 @@ public class AirportFlights extends AppCompatActivity {
         nt.setPriority(Thread.MAX_PRIORITY);
         nt.start();
 
-        this.nonstopLV.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        this.nonstopOtherLV.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long row_id)
             {
+
                 Intent i = new Intent(myContext, AirportFlightsOther.class);
                 //Airport selectedAirport = myContext.theNonstop.get(position);
                 //String selectedAirport = (String)myContext.nonstopLV.getItemAtPosition(position);
                 //need to set airportCode to last 3 char of string
-                String CityandAirportCodeString = (String)myContext.nonstopLV.getItemAtPosition(position);
+                String CityandAirportCodeString = (String)myContext.nonstopOtherLV.getItemAtPosition(position);
                 Core.airportCode = CityandAirportCodeString.substring(CityandAirportCodeString.length() - 3);
+
                 //Airport selectedAirport = new Airport();
                 //selectedAirport.airportCode = AirportCodeString;
-                System.out.println("*********" + Core.airportCode);
+                //System.out.println("*********" + selectedAirport.airportCode);
+
                 //i.putExtra("airportCode", selectedAirport.airportCode);
-                myContext.startActivity(i);
+                finish();
+                startActivity(getIntent());
             }
         });
-
-
-
-
-
     }
 }

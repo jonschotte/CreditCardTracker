@@ -49,6 +49,8 @@ public class AirportListActivity extends AppCompatActivity
                 Intent i = new Intent(myContext, AirportFlights.class);
                 Airport selectedAirport = myContext.theFilteredAirports.get(position);
                 i.putExtra("airportCode", selectedAirport.airportCode);
+
+
                 myContext.startActivity(i);
             }
         });

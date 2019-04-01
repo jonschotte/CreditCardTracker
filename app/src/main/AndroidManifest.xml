@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AirportFlights"></activity>
+        <activity android:name=".AirportFlightsOther" />
+        <activity android:name=".AirportFlights" />
         <activity android:name=".AirportListActivity" />
         <activity android:name=".EditLoyaltyActivity" />
         <activity android:name=".EditCardActivity" />
