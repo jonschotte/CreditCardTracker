@@ -18,7 +18,8 @@ public class Core
     public static DatabaseReference loyaltyProgramRef;
     public static Card currentSelectedCard = null;
     public static Loyalty currentSelectedLoyalty = null;
-    public static String airportCode;
+    public static ItineraryStack currentItinerary = new ItineraryStack();
+
     //encapsulated
     public static void addLoyaltyProgramLocally(Loyalty lp)
     {

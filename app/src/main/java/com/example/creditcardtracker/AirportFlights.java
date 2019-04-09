@@ -18,13 +18,13 @@ import java.util.LinkedList;
 public class AirportFlights extends AppCompatActivity {
 
     private ListView nonstopLV;
-    private LinkedList<String> theNonstopStrings = new LinkedList<String>();
-    private LinkedList<Airport> theNonstop = new LinkedList<Airport>();
+    private LinkedList<String> ll;
     private ArrayAdapter<String> aa;
+    private AirportCodeCache acc;
     private AirportFlights myContext;
 
 
-
+/*
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,5 +75,88 @@ public class AirportFlights extends AppCompatActivity {
 
 
 
+    }*/
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        this.myContext = this;
+        setContentView(R.layout.activity_airport_flights);
+        final TextView airportTV = this.findViewById(R.id.SelectedAirportTV);
+        this.nonstopLV = this.findViewById(R.id.nonstopLV);
+
+        this.ll = new LinkedList<String>();
+        this.aa = new ArrayAdapter<String>(this, R.layout.another_row, ll);
+        this.nonstopLV.setAdapter(aa);
+
+        this.nonstopLV.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long row_id)
+            {
+                String selectedAirport = ll.get(position).trim();
+
+                //alternative way of getting code and name
+                //String ac = selectedAirport.substring(selectedAirport.length()-3);
+                //String city = selectedAirport.substring(0, selectedAirport.length()-3);
+
+                String[] parts = selectedAirport.split(" ");
+
+                Intent i = new Intent(myContext, AirportFlights.class);
+                i.putExtra("airportCode", parts[parts.length-1].trim());
+                String cityName = "";
+                for(int j = 0; j < parts.length-1; j++)
+                {
+                    cityName = cityName + parts[j] + " ";
+                }
+                i.putExtra("cityName", cityName);
+                Core.currentItinerary.push(cityName + " " + parts[parts.length-1].trim());
+                myContext.startActivity(i);
+            }
+        });
+
+
+        String cityName = this.getIntent().getStringExtra("cityName");
+        String airportCode = this.getIntent().getStringExtra("airportCode");
+        airportCode = airportCode.replaceAll("\"","");
+        airportTV.setText(cityName + " - " + airportCode);
+
+        System.out.println("*** " + airportCode);
+        this.acc = new AirportCodeCache(airportCode);
+        acc.getData(aa, ll);
+
+
     }
+
+    public void onDisplayItineraryButtonPressed(View v)
+    {
+        Core.currentItinerary.display();
+        Intent i = new Intent(this, ItineraryList.class);
+        this.startActivity(i);
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        Core.currentItinerary.pop();
+        super.onBackPressed();
+    }
+
+    public void onReloadCacheButtonPressed(View v)
+    {
+        this.acc.clearCache(this.aa, this.ll);
+    }
+
+    public void onMonthButtonPressed(View v)
+    {
+        //intent used to go to other page
+        Intent i = new Intent(this, MonthList.class);
+        this.startActivity(i);
+
+
+
+
+    }
+
 }

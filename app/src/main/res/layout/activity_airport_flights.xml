@@ -11,10 +11,31 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <Button
+            android:id="@+id/Itinerary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onDisplayItineraryButtonPressed"
+            android:text="Show Itinerary" />
+
+        <Button
+            android:id="@+id/button8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onMonthButtonPressed"
+            android:text="Direct Flights for Month" />
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onReloadCacheButtonPressed"
+            android:text="Reload the Cache" />
+
         <TextView
             android:id="@+id/SelectedAirportTV"
             android:layout_width="match_parent"
-            android:layout_height="81dp"
+            android:layout_height="49dp"
             android:text="TextView"
             android:textSize="20sp" />
 
