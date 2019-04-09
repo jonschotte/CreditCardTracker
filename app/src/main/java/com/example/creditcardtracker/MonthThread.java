@@ -4,38 +4,41 @@ import android.os.Handler;
 import android.os.Looper;
 import android.widget.ArrayAdapter;
 
-import com.google.firebase.database.DatabaseReference;
-
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class AirportDestinationThread extends Thread
+public class MonthThread extends Thread
 {
     private String airportCode;
-    private LinkedList<String> destinationStrings;
-    private ArrayAdapter<String> aa;
-    private AirportDestinationThread myContext;
+    private ArrayAdapter<String> theArrayAdapter;
+    private LinkedList<String> theNonstopStrings;
+    private MonthThread myContext;
+    private String startDate;
+    private String endDate;
 
-    public AirportDestinationThread(String airportCode, LinkedList<String> destinationStrings, ArrayAdapter<String> aa)
+    public MonthThread(String airportCode, String startDate, String endDate, ArrayAdapter<String> theArrayAdapter, LinkedList<String> theNonstopStrings)
     {
         this.airportCode = airportCode;
-        this.destinationStrings = destinationStrings;
-        this.aa = aa;
+        this.theArrayAdapter = theArrayAdapter;
+        this.theNonstopStrings = theNonstopStrings;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.myContext = this;
     }
 
-    //get the data from screen scraping, add it to the linked list, and notify the array adapter
     public void run()
     {
         try
         {
-            URL airportURL = new URL("https://www.flightsfrom.com/" + this.airportCode + "/destinations");
+            URL airportURL = new URL("https://www.flightsfrom.com/" + this.airportCode + "/destinations?durationFrom=45&durationTo=315&dateMethod=month&dateFrom=" + this.startDate + "&dateTo=" + this.endDate);
 
             HttpURLConnection conn = (HttpURLConnection)airportURL.openConnection();
             Scanner input = new Scanner(conn.getInputStream());
             String data = "";
+
+
 
 
             while(input.hasNextLine())
@@ -43,6 +46,7 @@ public class AirportDestinationThread extends Thread
                 data = data + input.nextLine();
             }
             input.close();
+
             System.out.println("*** HAVE DATA!!!!!");
             //System.out.println("***" + data);
             String[] parts = data.split("airport-content-destination-list-name");
@@ -58,26 +62,32 @@ public class AirportDestinationThread extends Thread
                     beforeIndex += beforeVal.length();
                     afterIndex = part.indexOf(afterVal, beforeIndex);
                     //System.out.println("***" + part.substring(beforeIndex, afterIndex));
-                    this.destinationStrings.add(part.substring(beforeIndex, afterIndex));
+                    this.theNonstopStrings.add(part.substring(beforeIndex, afterIndex));
                 }
             }
-            System.out.println("*** Done");
+            System.out.println("***** Done");
 
-            new Handler(Looper.getMainLooper()).post(new Runnable ()
-            {
+            new Handler(Looper.getMainLooper()).post(new Runnable () {
                 @Override
                 public void run () {
-                    myContext.aa.notifyDataSetChanged();
-                    DatabaseReference ref = Core.database.getReference("airport_code_cache").child(myContext.airportCode.toUpperCase());
-                    ref.setValue(myContext.destinationStrings);
+                    myContext.theArrayAdapter.notifyDataSetChanged();
                 }
             });
+
+            //myContext.theArrayAdapter.notifyDataSetChanged();
+
+
+
+
+
+
 
 
         }
         catch(Exception e)
         {
-            System.out.println("***" + e.toString());
+            System.out.println("*********" + e.toString());
         }
+
     }
 }

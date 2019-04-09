@@ -24,7 +24,7 @@ public class ItineraryList extends AppCompatActivity {
         this.myContext = this;
         this.ItineraryLV = this.findViewById(R.id.ItineraryLV);
         this.ll = new LinkedList<String>();
-        this.aa = new ArrayAdapter<String>(this, R.layout.another_row, ll);
+        this.aa = new ArrayAdapter<String>(this, R.layout.another_row, Core.currentItineraryLL);
         this.ItineraryLV.setAdapter(aa);
 
     }

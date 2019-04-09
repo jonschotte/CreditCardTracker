@@ -10,6 +10,8 @@ public class MonthList extends AppCompatActivity {
 
 
     public String Month;
+    public String startDate;
+    public String endDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -22,8 +24,10 @@ public class MonthList extends AppCompatActivity {
 
     public void onJanuaryButtonPressed(View v)
     {
+
         Intent i = new Intent(this, AirportFlights.class);
-        Month = new String("January");
+        i.putExtra(startDate, "01-01-2019");
+        i.putExtra(endDate, "01-31-2019");
         this.startActivity(i);
     }
 
