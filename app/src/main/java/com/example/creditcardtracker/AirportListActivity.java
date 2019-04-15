@@ -60,9 +60,6 @@ public class AirportListActivity extends AppCompatActivity
         });
 
 
-
-
-
         DatabaseReference ref = Core.database.getReference("airports");
         ref.addListenerForSingleValueEvent(new ValueEventListener()
         {
