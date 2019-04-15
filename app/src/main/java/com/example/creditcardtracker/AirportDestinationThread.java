@@ -74,7 +74,8 @@ public class AirportDestinationThread extends Thread
             }
             System.out.println("*** Done");
 
-            new Handler(Looper.getMainLooper()).post(new Runnable () {
+            new Handler(Looper.getMainLooper()).post(new Runnable ()
+            {
                 @Override
                 public void run () {
                     myContext.aa.notifyDataSetChanged();

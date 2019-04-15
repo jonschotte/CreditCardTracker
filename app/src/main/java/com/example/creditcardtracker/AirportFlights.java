@@ -59,16 +59,16 @@ public class AirportFlights extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long row_id)
             {
-                Intent i = new Intent(myContext, AirportFlightsOther.class);
+                Intent i = new Intent(myContext, AirportFlights.class);
                 //Airport selectedAirport = myContext.theNonstop.get(position);
                 //String selectedAirport = (String)myContext.nonstopLV.getItemAtPosition(position);
                 //need to set airportCode to last 3 char of string
                 String CityandAirportCodeString = (String)myContext.nonstopLV.getItemAtPosition(position);
-                Core.airportCode = CityandAirportCodeString.substring(CityandAirportCodeString.length() - 3);
+                String airportCode = CityandAirportCodeString.substring(CityandAirportCodeString.length() - 3);
                 //Airport selectedAirport = new Airport();
                 //selectedAirport.airportCode = AirportCodeString;
-                System.out.println("*********" + Core.airportCode);
-                //i.putExtra("airportCode", selectedAirport.airportCode);
+                System.out.println("*********" + airportCode);
+                i.putExtra("airportCode", airportCode);
                 myContext.startActivity(i);
             }
         });
@@ -98,11 +98,6 @@ public class AirportFlights extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long row_id)
             {
                 String selectedAirport = ll.get(position).trim();
-
-                //alternative way of getting code and name
-                //String ac = selectedAirport.substring(selectedAirport.length()-3);
-                //String city = selectedAirport.substring(0, selectedAirport.length()-3);
-
                 String[] parts = selectedAirport.split(" ");
 
                 Intent i = new Intent(myContext, AirportFlights.class);
@@ -114,6 +109,7 @@ public class AirportFlights extends AppCompatActivity {
                 }
                 i.putExtra("cityName", cityName);
                 Core.currentItinerary.push(cityName + " " + parts[parts.length-1].trim());
+                Core.currentItineraryLL.add(cityName + " " + parts[parts.length-1].trim());
                 myContext.startActivity(i);
             }
         });

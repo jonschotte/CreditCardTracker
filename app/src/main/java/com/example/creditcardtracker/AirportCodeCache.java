@@ -11,7 +11,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.LinkedList;
 
-public class AirportCodeCache
+public class AirportCodeCache extends Thread
 {
     private String airportCode;
     private LinkedList<String> destinations;
@@ -43,10 +43,6 @@ public class AirportCodeCache
         AirportDestinationThread adt = new AirportDestinationThread(airportCode, ll, aa);
         adt.setPriority(Thread.MAX_PRIORITY);
         adt.start();
-
-        NetworkThread nt = new NetworkThread(airportCode, aa, ll);
-        nt.setPriority(Thread.MAX_PRIORITY);
-        nt.start();
     }
 
 

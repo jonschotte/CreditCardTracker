@@ -5,6 +5,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.sql.Struct;
+import java.util.LinkedList;
 
 public class Core
 {
@@ -19,6 +20,8 @@ public class Core
     public static Card currentSelectedCard = null;
     public static Loyalty currentSelectedLoyalty = null;
     public static ItineraryStack currentItinerary = new ItineraryStack();
+    public static LinkedList<String> currentItineraryLL = new LinkedList<String>();
+    public static String currentAirportCode;
 
     //encapsulated
     public static void addLoyaltyProgramLocally(Loyalty lp)
