@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 
 public class MonthList extends AppCompatActivity {
-
+/*
 
     public String Month;
 
@@ -92,5 +92,5 @@ public class MonthList extends AppCompatActivity {
         Intent i = new Intent(this, AirportFlights.class);
         this.startActivity(i);
     }
-
+*/
 }

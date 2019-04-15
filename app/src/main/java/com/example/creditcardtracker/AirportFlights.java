@@ -22,6 +22,8 @@ public class AirportFlights extends AppCompatActivity {
     private ArrayAdapter<String> aa;
     private AirportCodeCache acc;
     private AirportFlights myContext;
+    private String cityName;
+    private String airportCode;
 
 
 /*
@@ -117,12 +119,11 @@ public class AirportFlights extends AppCompatActivity {
         });
 
 
-        String cityName = this.getIntent().getStringExtra("cityName");
-        String airportCode = this.getIntent().getStringExtra("airportCode");
+        cityName = this.getIntent().getStringExtra("cityName");
+        airportCode = this.getIntent().getStringExtra("airportCode");
         airportCode = airportCode.replaceAll("\"","");
         airportTV.setText(cityName + " - " + airportCode);
 
-        System.out.println("*** " + airportCode);
         this.acc = new AirportCodeCache(airportCode);
         acc.getData(aa, ll);
 
@@ -131,7 +132,7 @@ public class AirportFlights extends AppCompatActivity {
 
     public void onDisplayItineraryButtonPressed(View v)
     {
-        Core.currentItinerary.display();
+
         Intent i = new Intent(this, ItineraryList.class);
         this.startActivity(i);
     }
@@ -147,6 +148,15 @@ public class AirportFlights extends AppCompatActivity {
     {
         this.acc.clearCache(this.aa, this.ll);
     }
+
+    public void onSelectMonthButtonPressed(View v)
+    {
+        Intent i = new Intent(this, MonthSelectActivity.class);
+        i.putExtra("airportCode", this.airportCode);
+        i.putExtra("cityName", this.cityName);
+        this.startActivity(i);
+    }
+
 
     public void onMonthButtonPressed(View v)
     {

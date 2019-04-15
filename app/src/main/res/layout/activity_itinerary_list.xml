@@ -7,7 +7,7 @@
     tools:context=".ItineraryList">
 
     <ListView
-        android:id="@+id/ItineraryLV"
+        android:id="@+id/itineraryLV"
         android:layout_width="395dp"
         android:layout_height="715dp"
         tools:layout_editor_absoluteX="8dp"
