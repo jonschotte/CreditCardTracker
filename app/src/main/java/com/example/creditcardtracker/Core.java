@@ -22,6 +22,8 @@ public class Core
     public static ItineraryStack currentItinerary = new ItineraryStack();
     public static LinkedList<String> currentItineraryLL = new LinkedList<String>();
     public static String currentAirportCode;
+    public static TreeCollection theVault = new TreeCollection();
+    public static int currentNode = 0;
 
     //encapsulated
     public static void addLoyaltyProgramLocally(Loyalty lp)

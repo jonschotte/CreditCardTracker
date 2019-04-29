@@ -173,10 +173,5 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void onTestButtonPressed(View v)
-    {
-        //intent used to go to other page
-        Intent i = new Intent(this, BinaryParent.class);
-        this.startActivity(i);
-    }
+
 }

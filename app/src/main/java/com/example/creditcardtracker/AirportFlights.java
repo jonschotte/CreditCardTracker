@@ -159,10 +159,13 @@ public class AirportFlights extends AppCompatActivity {
         //intent used to go to other page
         Intent i = new Intent(this, MonthList.class);
         this.startActivity(i);
+    }
 
-
-
-
+    public void onBinaryTreeButtonPressed(View v)
+    {
+        //intent used to go to other page
+        Intent i = new Intent(this, BTMain.class);
+        this.startActivity(i);
     }
 
 }

@@ -10,9 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".BinaryLeftChild"></activity>
-        <activity android:name=".BinaryRightChild" />
-        <activity android:name=".BinaryParent" />
+        <activity android:name=".BTMain"></activity>
         <activity android:name=".MonthSelectActivity" />
         <activity android:name=".AirportMonthDetailActivity" />
         <activity android:name=".ItineraryList" />

@@ -1,47 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".AirportFlights">
 
-    <LinearLayout
+    <Button
+        android:id="@+id/BinaryTree"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:onClick="onBinaryTreeButtonPressed"
+        android:text="Binary Tree" />
 
-        <Button
-            android:id="@+id/Itinerary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onDisplayItineraryButtonPressed"
-            android:text="Show Itinerary" />
+    <Button
+        android:id="@+id/Itinerary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onDisplayItineraryButtonPressed"
+        android:text="Show Itinerary" />
 
-        <Button
-            android:id="@+id/button8"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onSelectMonthButtonPressed"
-            android:text="Direct Flights for Month" />
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onSelectMonthButtonPressed"
+        android:text="Direct Flights for Month" />
 
-        <Button
-            android:id="@+id/button7"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onReloadCacheButtonPressed"
-            android:text="Reload the Cache" />
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onReloadCacheButtonPressed"
+        android:text="Reload the Cache" />
 
-        <TextView
-            android:id="@+id/SelectedAirportTV"
-            android:layout_width="match_parent"
-            android:layout_height="49dp"
-            android:text="TextView"
-            android:textSize="20sp" />
+    <TextView
+        android:id="@+id/SelectedAirportTV"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:text="TextView"
+        android:textSize="20sp" />
 
-        <ListView
-            android:id="@+id/nonstopLV"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+    <ListView
+        android:id="@+id/nonstopLV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
