@@ -171,4 +171,12 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this, AirportListActivity.class);
         this.startActivity(i);
     }
+
+
+    public void onTestButtonPressed(View v)
+    {
+        //intent used to go to other page
+        Intent i = new Intent(this, BinaryParent.class);
+        this.startActivity(i);
+    }
 }
