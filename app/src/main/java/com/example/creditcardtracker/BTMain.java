@@ -54,16 +54,18 @@ public class BTMain extends AppCompatActivity {
 */
 
         //get the tree owned by this BTMainActivity
-        if(this.getIntent().hasExtra("myTree"))
+        if(this.getIntent().hasExtra("airportCode"))
         {
-            this.myTree = (BTreeNode) this.getIntent().getSerializableExtra("airportCode");
-            //this.myTree = (BinaryTree2)this.getIntent().getStringArrayListExtra("airportCode");
+
+            System.out.println(this.getIntent().getStringExtra("airportCode1"));
+            this.myTree = (BTreeNode) this.getIntent().getSerializableExtra("airportCode1");
+            //this.myTree = (BinaryTree)this.getIntent().getStringArrayListExtra("airportCode1");
         }
         else
         {
 
 
-            this.myTree = new BTreeNode("hat");
+            this.myTree = new BTreeNode("cat");
             //this.myTree.add("hat");
             //this.myTree.add("taco");
             //this.myTree.add("cat");

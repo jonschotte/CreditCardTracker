@@ -170,9 +170,10 @@ public class AirportFlights extends AppCompatActivity {
     public void onBinaryTreeButtonPressed(View v)
     {
         //intent used to go to other page
-        Airport airportCode = new Airport();
+
+        String Taco = "taco";
         Intent i = new Intent(this, BTMain.class);
-        i.putExtra("airportCode", airportCode);
+        i.putExtra("airportCode1", Taco);
         this.startActivity(i);
     }
 
