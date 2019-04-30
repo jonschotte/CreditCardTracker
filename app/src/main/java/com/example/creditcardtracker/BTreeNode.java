@@ -1,12 +1,14 @@
 package com.example.creditcardtracker;
 
-public class BTreeNode
-{
-    private int payload;
-    private BTreeNode leftChild;
-    private BTreeNode rightChild;
+import java.io.Serializable;
 
-    public BTreeNode(int payload)
+public class BTreeNode implements Serializable
+{
+    public String payload;
+    public BTreeNode leftChild;
+    public BTreeNode rightChild;
+
+    public BTreeNode(String payload)
     {
         this.payload = payload;
         this.leftChild = null;
@@ -60,7 +62,8 @@ public class BTreeNode
 
     public void addNode(BTreeNode n)
     {
-        if(n.getPayload() <= this.payload)
+
+        if(n.getPayload().compareTo(this.payload) == -1)
         {
             if(this.leftChild == null)
             {
@@ -100,7 +103,7 @@ public class BTreeNode
         this.rightChild = rightChild;
     }
 
-    public int getPayload() {
+    public String getPayload() {
         return payload;
     }
 }

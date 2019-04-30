@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class AirportFlights extends AppCompatActivity {
@@ -124,6 +125,11 @@ public class AirportFlights extends AppCompatActivity {
         acc.getData(aa, ll);
 
 
+
+
+
+
+
     }
 
     public void onDisplayItineraryButtonPressed(View v)
@@ -164,7 +170,9 @@ public class AirportFlights extends AppCompatActivity {
     public void onBinaryTreeButtonPressed(View v)
     {
         //intent used to go to other page
+        Airport airportCode = new Airport();
         Intent i = new Intent(this, BTMain.class);
+        i.putExtra("airportCode", airportCode);
         this.startActivity(i);
     }
 

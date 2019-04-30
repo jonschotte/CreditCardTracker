@@ -1,6 +1,8 @@
 package com.example.creditcardtracker;
 
-public class BinaryTree
+import java.io.Serializable;
+
+public class BinaryTree implements Serializable
 {
     private BTreeNode root;
 
@@ -33,7 +35,7 @@ public class BinaryTree
         }
     }
 
-    public void addValue(int payload)
+    public void addValue(String payload)
     {
         BTreeNode n = new BTreeNode(payload);
         if(this.root == null)

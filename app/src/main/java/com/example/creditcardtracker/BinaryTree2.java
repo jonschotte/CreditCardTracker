@@ -4,11 +4,11 @@ import java.io.Serializable;
 
 public class BinaryTree2 implements Serializable
 {
-    public int payload;
+    public String payload;
     public BinaryTree2 left;
     public BinaryTree2 right;
 
-    public BinaryTree2(int payload)
+    public BinaryTree2(String payload)
     {
         this.payload = payload;
         this.left = null;
@@ -33,9 +33,9 @@ public class BinaryTree2 implements Serializable
         }
     }
 
-    public void add(int payloadToAdd)
+    public void add(String payloadToAdd)
     {
-        if(payloadToAdd <= this.payload)
+        if(payloadToAdd.compareTo(this.payload) == -1 ) //<=
         {
             //add to the left
             if(this.left == null)
