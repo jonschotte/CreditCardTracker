@@ -63,7 +63,7 @@ public class BTreeNode implements Serializable
     public void addNode(BTreeNode n)
     {
 
-        if(n.getPayload().compareTo(this.payload) == -1)
+        if(n.getPayload().compareTo(this.payload) == 1)
         {
             if(this.leftChild == null)
             {

@@ -42,16 +42,20 @@ public class BTMain extends AppCompatActivity {
         this.leftButton = this.findViewById(R.id.leftButton);
         this.rightButton = this.findViewById(R.id.rightButton);
 
-/*
-    BinaryTree bt = new BinaryTree();
-        bt.addValue(1);
-        bt.addValue(12);
-        bt.addValue(3);
-        bt.addValue(4);
+
+        System.out.println("********"+myTree);
+
+        BinaryTree bt = new BinaryTree();
+        bt.addValue("1");
+        bt.addValue("12");
+        bt.addValue("3");
+        bt.addValue("4");
         bt.visitInOrder();
         bt.visitPostOrder();
         bt.visitPreOrder();
-*/
+
+
+
 
         //get the tree owned by this BTMainActivity
         if(this.getIntent().hasExtra("airportCode"))

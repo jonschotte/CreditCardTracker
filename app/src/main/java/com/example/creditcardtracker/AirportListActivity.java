@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.example.creditcardtracker.AirportTree.AirportTree;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,6 +28,7 @@ public class AirportListActivity extends AppCompatActivity
     private ArrayAdapter<String> aa;
     private EditText filterET;
     private AirportListActivity myContext;
+    public AirportTree atree = new AirportTree();
 
 
     @Override
@@ -68,14 +70,34 @@ public class AirportListActivity extends AppCompatActivity
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
                 Airport temp;
+                LinkedList<String> keys = new LinkedList<String>();
+
                 for(DataSnapshot ds : dataSnapshot.getChildren())
                 {
                     //System.out.println("*********" + dataSnapshot.toString());
                     temp = ds.getValue(Airport.class);
+                    //atree.add(temp);
+                    temp.display();
+                    temp.sanitize();        // after sanitize, comment this out.
                     theAirports.add(temp);
+                    keys.add(ds.getKey());  // after sanitize, comment this out.
                     theAirportStrings.add(temp.toString());
-
                 }
+
+                for(int i = 0; i < theAirports.size(); i++)
+                {
+                    Airport a = theAirports.get(i);
+                    String key = keys.get(i);
+                    if(a.isLegalCode())
+                    {
+                        Core.database.getReference("airports").child(key).setValue(a);
+                    }
+                    else
+                    {
+                        Core.database.getReference("airports").child(key).removeValue();
+                    }
+                }
+                atree.visitInOrder();
                 aa.notifyDataSetChanged();
             }
 
@@ -103,5 +125,11 @@ public class AirportListActivity extends AppCompatActivity
         this.aa.notifyDataSetChanged();
     }
 
+    public void onMarakaClick(View v)
+    {
+        Intent i = new Intent(this, AirportTreeViewActivity.class);
+        Core.currTree = this.atree.getRoot();
+        this.startActivity(i);
+    }
 
 }

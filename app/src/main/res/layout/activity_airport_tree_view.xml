@@ -5,38 +5,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".AirportTreeViewActivity">
 
     <TextView
-        android:id="@+id/payloadTV"
+        android:id="@+id/airportCodeTV"
+        android:layout_width="match_parent"
+        android:layout_height="73dp"
+        android:gravity="center_horizontal"
+        android:text="TextView"
+        android:textSize="36sp" />
+
+    <TextView
+        android:id="@+id/locationTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="head"
-        android:textSize="50sp" />
+        android:text="TextView" />
 
     <LinearLayout
-        android:id="@+id/airportLV"
         android:layout_width="match_parent"
-        android:layout_height="78dp"
+        android:layout_height="match_parent"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/leftButton"
-            android:layout_width="wrap_content"
+            android:layout_width="213dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:onClick="onLeftButtonClicked"
-            android:text="Left Child" />
+            android:text="Left" />
 
         <Button
             android:id="@+id/rightButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:onClick="onRightButtonClicked"
-            android:text="Right Child" />
-
+            android:text="Right" />
     </LinearLayout>
 
 </LinearLayout>

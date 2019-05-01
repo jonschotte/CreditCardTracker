@@ -12,7 +12,6 @@ public class Airport implements Serializable
     public String region;
     public String city;
     public String airportCode;
-    private String key;
     private DatabaseReference ref;
 
     public Airport (String name, String country, String region, String city, String airportCode)
@@ -29,7 +28,32 @@ public class Airport implements Serializable
 
     }
 
+    private String removeQuotes(String s)
+    {
+        String result = "";
+        for(int i = 0; i< s.length(); i++)
+        {
+            if(s.charAt(i)!= '"')
+            {
+                result +=
+            }
+            return result;
+        }
+    }
 
+    public boolean isLegalCode()
+    {
+        return this.airportCode.length() == 3;
+    }
+    public  void sanitize()
+    {
+        this.name = this.removeQuotes();
+        this.country = this.removeQuotes()
+        this.region =
+        this.city =
+        this.airportCode =
+
+    }
 
     public boolean filterApplies(String filterString)
     {

@@ -1,6 +1,7 @@
 package com.example.creditcardtracker;
 
 
+import com.example.creditcardtracker.AirportTree.ATree;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -22,6 +23,7 @@ public class Core
     public static ItineraryStack currentItinerary = new ItineraryStack();
     public static LinkedList<String> currentItineraryLL = new LinkedList<String>();
     public static String currentAirportCode;
+    public static ATree currTree;
 
     //encapsulated
     public static void addLoyaltyProgramLocally(Loyalty lp)
