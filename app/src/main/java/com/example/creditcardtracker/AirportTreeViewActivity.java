@@ -15,6 +15,7 @@ public class AirportTreeViewActivity extends AppCompatActivity
     private ATree theTree;
     private Button leftButton, rightButton;
     private TextView airportCodeTV, locationTV;
+    public String location;
 
 
     @Override
@@ -29,7 +30,7 @@ public class AirportTreeViewActivity extends AppCompatActivity
         this.airportCodeTV = this.findViewById(R.id.airportCodeTV);
         this.locationTV = this.findViewById(R.id.locationTV);
         this.airportCodeTV.setText(this.theTree.payload.airportCode);
-        String location = this.theTree.payload.city + ", " + this.theTree.payload.region.split("-")[1];
+        location = this.theTree.payload.city + ", " + this.theTree.payload.region.split("-")[1];
         this.locationTV.setText(location);
         this.hideButtonsIfNeeded();
     }
@@ -65,6 +66,7 @@ public class AirportTreeViewActivity extends AppCompatActivity
     {
 
         Intent i = new Intent(this, RestaurantListActivity.class);
+        i.putExtra("Location", this.theTree.payload.city);
         this.startActivity(i);
     }
 }
