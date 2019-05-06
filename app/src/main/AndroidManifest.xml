@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AirportTreeViewActivity"></activity>
-        <activity android:name=".BTMain" />
+        <activity android:name=".RestaurantListActivity"></activity>
+        <activity android:name=".AirportTreeViewActivity" />
         <activity android:name=".MonthSelectActivity" />
         <activity android:name=".AirportMonthDetailActivity" />
         <activity android:name=".ItineraryList" />

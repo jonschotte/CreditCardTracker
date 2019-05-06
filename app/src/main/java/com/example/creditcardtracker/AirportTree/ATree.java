@@ -10,6 +10,9 @@ public class ATree implements Serializable
     public ATree left;
     public ATree right;
 
+    public ATree()
+    {}
+
     public ATree(Airport payload)
     {
         this.payload = payload;
@@ -20,12 +23,12 @@ public class ATree implements Serializable
     public String visitInOrder()
     {
         String answer = "";
-        if (this.left!= null)
+        if(this.left != null)
         {
             answer += this.left.visitInOrder();
         }
-        answer += "  " + this.left.visitInOrder();
-        if (this.right != null)
+        answer += " " + this.payload.airportCode;
+        if(this.right != null)
         {
             answer += this.right.visitInOrder();
         }
@@ -38,7 +41,7 @@ public class ATree implements Serializable
         {
             if(this.right == null)
             {
-                this.right =a;
+                this.right = a;
             }
             else
             {
@@ -49,7 +52,7 @@ public class ATree implements Serializable
         {
             if(this.left == null)
             {
-                this.left =a;
+                this.left = a;
             }
             else
             {
@@ -57,4 +60,5 @@ public class ATree implements Serializable
             }
         }
     }
+
 }

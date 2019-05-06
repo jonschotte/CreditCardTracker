@@ -160,21 +160,7 @@ public class AirportFlights extends AppCompatActivity {
     }
 
 
-    public void onMonthButtonPressed(View v)
-    {
-        //intent used to go to other page
-        Intent i = new Intent(this, MonthList.class);
-        this.startActivity(i);
-    }
 
-    public void onBinaryTreeButtonPressed(View v)
-    {
-        //intent used to go to other page
 
-        String Taco = "taco";
-        Intent i = new Intent(this, BTMain.class);
-        i.putExtra("airportCode1", Taco);
-        this.startActivity(i);
-    }
 
 }

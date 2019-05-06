@@ -71,19 +71,18 @@ public class AirportListActivity extends AppCompatActivity
             {
                 Airport temp;
                 LinkedList<String> keys = new LinkedList<String>();
-
                 for(DataSnapshot ds : dataSnapshot.getChildren())
                 {
                     //System.out.println("*********" + dataSnapshot.toString());
                     temp = ds.getValue(Airport.class);
-                    //atree.add(temp);
+                    atree.add(temp);
                     temp.display();
-                    temp.sanitize();        // after sanitize, comment this out.
+                    //temp.sanitize();        // after sanitize, comment this out.
                     theAirports.add(temp);
-                    keys.add(ds.getKey());  // after sanitize, comment this out.
+                    //keys.add(ds.getKey());  // after sanitize, comment this out.
                     theAirportStrings.add(temp.toString());
                 }
-
+                /*
                 for(int i = 0; i < theAirports.size(); i++)
                 {
                     Airport a = theAirports.get(i);
@@ -97,7 +96,8 @@ public class AirportListActivity extends AppCompatActivity
                         Core.database.getReference("airports").child(key).removeValue();
                     }
                 }
-                atree.visitInOrder();
+                */
+                //atree.visitInOrder();
                 aa.notifyDataSetChanged();
             }
 

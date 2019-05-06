@@ -31,7 +31,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         YelpAPI yelp = new YelpAPI();
-        yelp.start;
+        yelp.start();
+
+
+        com.example.creditcardtracker.BinaryTree bt = new com.example.creditcardtracker.BinaryTree();
+        bt.addValue(5);
+        bt.addValue(2);
+        bt.addValue(1);
+        bt.addValue(7);
+        bt.addValue(8);
+        bt.addValue(3);
+        bt.visitInOrder();
+        bt.visitPostOrder();
+        bt.visitPreOrder();
+
+        String obj1 = "MKE";
+        String obj2 = "ATL";
+        String obj3 = new String("atl");
+
+        System.out.println("*** LOL" + obj2.compareTo(obj3));
 
 
 

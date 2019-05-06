@@ -2,7 +2,8 @@ package com.example.creditcardtracker.AirportTree;
 
 import com.example.creditcardtracker.Airport;
 
-public class AirportTree {
+public class AirportTree
+{
     private ATree root;
 
     public AirportTree()
