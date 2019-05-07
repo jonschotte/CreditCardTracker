@@ -30,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        YelpAPI yelp = new YelpAPI();
-        yelp.start();
 
 
         com.example.creditcardtracker.BinaryTree bt = new com.example.creditcardtracker.BinaryTree();

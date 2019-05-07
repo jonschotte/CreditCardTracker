@@ -12,10 +12,10 @@ import com.example.creditcardtracker.AirportTree.ATree;
 
 public class AirportTreeViewActivity extends AppCompatActivity
 {
-    private ATree theTree;
+    public ATree theTree;
     private Button leftButton, rightButton;
     private TextView airportCodeTV, locationTV;
-    public String location;
+    private String location;
 
 
     @Override

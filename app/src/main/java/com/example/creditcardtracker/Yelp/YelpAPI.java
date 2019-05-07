@@ -1,5 +1,7 @@
 package com.example.creditcardtracker.Yelp;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -35,7 +37,8 @@ public class YelpAPI extends Thread
     {
         try
         {
-            String urlString = String.format("https://api.yelp.com/v3/businesses/search?location=%, WI&categories=restaurants", this.cityName);
+
+            String urlString = String.format("https://api.yelp.com/v3/businesses/search?location=%&categories=restaurants", myContext.cityName);
             URL airportURL = new URL(urlString);
             HttpURLConnection conn = (HttpURLConnection)airportURL.openConnection();
             conn.setRequestProperty("Authorization", "Bearer rHiHUFg_HwZTi_TYeolIb_9Z4MZxpb0PF1-OSR-mao4Amjrp1Ha0X4hotdT7QIanpjyoxs6KofAZSM0JQqLeLBUig_olxGseeWVF8heCQc8pFhaxW9Sd5fKNHgDJXHYx");
@@ -47,14 +50,26 @@ public class YelpAPI extends Thread
                 data = data + input.nextLine();
             }
             input.close();
-            //System.out.println("**** DATA: " + data);
+            System.out.println("**** DATA: " + data);
+            this.ll.add(data);
             JSONObject obj = new JSONObject(data);
             JSONArray businesses = obj.getJSONArray("businesses");
+
+
             for(int i = 0; i < businesses.length(); i++)
             {
                 String name = businesses.getJSONObject(i).getString("name");
-                //System.out.println("**** " + name);
+                System.out.println("**** " + name);
             }
+
+
+
+            new Handler(Looper.getMainLooper()).post(new Runnable () {
+                @Override
+                public void run () {
+                    myContext.aa.notifyDataSetChanged();
+                }
+            });
 
         }
         catch (Exception e)

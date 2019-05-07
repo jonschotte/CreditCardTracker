@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.creditcardtracker.Yelp.YelpAPI;
+
 import java.util.LinkedList;
 
 public class RestaurantListActivity extends AppCompatActivity {
@@ -19,7 +21,6 @@ public class RestaurantListActivity extends AppCompatActivity {
     private LinkedList<String> ll;
     private ArrayAdapter<String> aa;
     private String cityName;
-    private AirportCodeCache acc;
 
 
 
@@ -30,6 +31,13 @@ public class RestaurantListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_restaurant_list);
 
         this.myContext = this;
+        cityName = getIntent().getStringExtra("Location");
+        //System.out.println("*******" + cityName );
+        YelpAPI yelp = new YelpAPI(cityName, ll, aa);
+        yelp.start();
+
+
+
 
         LocationTV = this.findViewById(R.id.LocationTV);
         this.RestaurantListView = this.findViewById(R.id.RestaurantListView);
